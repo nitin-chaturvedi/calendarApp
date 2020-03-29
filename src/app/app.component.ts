@@ -69,6 +69,7 @@ export class AppComponent {
         || !isNumber(e.start)
         || !isNumber(e.end)
         || e.start > e.end
+        || e.end >720
       ) {
         return false;
       }
