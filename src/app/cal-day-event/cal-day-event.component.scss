@@ -1,0 +1,53 @@
+.calContainer {
+  width: 720px;
+  display: flex;
+}
+
+.calTimeContainer {
+  width: 100px;
+  height: 750px;
+  display: inline-block;
+}
+
+.calTimeLabelContainer {
+  height: 30px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.calTimeLabel {
+  padding: 5px 0px;
+  
+}
+
+.calEventContainer {
+  box-sizing: border-box;
+  width: 620px;
+  height: 720px;
+  margin-top: 15px;
+  padding: 0px 10px;
+  background-color: rgb(221, 219, 219);
+  border-left: 1px solid rgb(180, 180, 180);
+  position: relative;
+}
+
+.calEvent {
+  box-sizing: border-box;
+  background-color: white;
+  border-left: 5px solid green;
+  border-top: 1px solid rgb(180, 177, 177);
+  border-right: 1px solid rgb(180, 177, 177);
+  border-bottom: 1px solid rgb(180, 177, 177);
+  position: absolute;
+}
+
+.calEventTitle {
+  font-size: 20px;
+  color:green;
+  padding-left: 5px;
+}
+
+.calEventDesc {
+  font-size: 16px;
+  padding-left: 10px;
+}
