@@ -9,7 +9,7 @@
       </div>
     </div>
   
-    <div class="calEventContainer">
+    <div class="calEventContainer" [style.width]="width + 'px'">
       <div class="calEvent" *ngFor="let event of eventArray" [style.height]="event.height" [style.top]="event.start+'px'"
         [style.width]="event.width" [style.left]="event.left">
         <div class="calEventTitle">{{event.title}}</div>

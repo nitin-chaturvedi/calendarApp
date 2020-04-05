@@ -13,6 +13,9 @@ export class CalDayEventComponent implements OnInit {
   @Input()
   eventArray:any;
 
+  @Input()
+  width:number;
+
   constructor() { }
 
   ngOnInit(): void {

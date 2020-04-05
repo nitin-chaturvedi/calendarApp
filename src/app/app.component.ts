@@ -12,11 +12,12 @@ export class AppComponent {
   time: any;
   eventArray: any;
   webWorker: Worker;
+  width: number;
 
   constructor(private zone: NgZone) {
-    window['layOutDay'] = (events) => {
+    window['layOutDay'] = (events, width?, sidePadding?) => {
       zone.run(() => {
-        this.layOutDay(events);
+        this.layOutDay(events, width, sidePadding);
       });
     }
   }
@@ -26,10 +27,11 @@ export class AppComponent {
     if (typeof Worker !== 'undefined') {
       this.webWorker = new Worker('./web-worker/event-processing-worker.worker', { type: 'module' })
       this.webWorker.onmessage = ({ data }) => {
+        // console.log(data);
         this.eventArray = data;
       }
     }
-
+    this.width = 620;
     this.initializeTime();
     this.defaultEvent();
     this.layOutDay(this.eventArray);
@@ -48,9 +50,26 @@ export class AppComponent {
     this.eventArray = [{ start: 30, end: 150 }, { start: 540, end: 600 }, { start: 560, end: 620 }, { start: 610, end: 670 }];
   }
 
-  layOutDay(events) {
+  layOutDay(events, width?, sidePadding?) {
     if (this.validateEvents(events)) {
-      this.webWorker.postMessage(events);
+      if (width && !isNumber(width) || width <= 0) {
+        throw 'Error :: invalid Input';
+      }
+      if (sidePadding && !isNumber(sidePadding) || sidePadding <= 0) {
+        throw 'Error :: invalid Input';
+      }
+
+      width = width || 620;
+      this.width = width
+      sidePadding = sidePadding || 10;
+
+      this.webWorker.postMessage(
+        {
+          events: events,
+          width: width,
+          sidePadding: sidePadding
+        }
+      );
     } else {
       throw 'Error :: invalid Input';
     }
@@ -69,7 +88,8 @@ export class AppComponent {
         || !isNumber(e.start)
         || !isNumber(e.end)
         || e.start > e.end
-        || e.end >720
+        || e.start < 0
+        || e.end > 720
       ) {
         return false;
       }

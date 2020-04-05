@@ -22,7 +22,6 @@
 
 .calEventContainer {
   box-sizing: border-box;
-  width: 620px;
   height: 720px;
   margin-top: 15px;
   padding: 0px 10px;
@@ -39,6 +38,7 @@
   border-right: 1px solid rgb(180, 177, 177);
   border-bottom: 1px solid rgb(180, 177, 177);
   position: absolute;
+  overflow: hidden;
 }
 
 .calEventTitle {
